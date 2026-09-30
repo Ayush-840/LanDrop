@@ -1,6 +1,6 @@
 {
   "name": "@ayush-840/chunkkit",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Structure-aware text chunking for RAG and LLM pipelines. Zero dependencies.",
   "type": "module",
   "main": "./dist/index.cjs",

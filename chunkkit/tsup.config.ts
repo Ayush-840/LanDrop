@@ -12,7 +12,8 @@ export default [
   {
     entry: { cli: "bin/cli.ts" },
     format: ["esm"],
-    banner: { js: "#!/usr/bin/env node" },
+    // No banner: bin/cli.ts already starts with its own shebang; adding
+    // another here produces a second shebang on line 2, which Node rejects.
     sourcemap: true,
     target: "es2022",
   },
