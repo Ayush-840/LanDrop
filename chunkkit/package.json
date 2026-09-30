@@ -42,7 +42,7 @@
     "bench": "npm run build && node bench/bench.mjs",
     "format": "prettier --write src tests bin",
     "typecheck": "tsc --noEmit",
-    "prepublishOnly": "npm run lint && npm test && npm run build"
+    "prepublishOnly": "npm run lint && npm run build && npm test"
   },
   "devDependencies": {
     "@types/node": "^22.10.0",

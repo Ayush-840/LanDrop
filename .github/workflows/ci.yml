@@ -22,6 +22,7 @@ jobs:
           node-version: ${{ matrix.node }}
       - run: npm ci
       - run: npm run lint
+      - run: npm run build   # before tests: CLI e2e tests spawn dist/cli.js
       - run: npm test
       - run: npm run coverage
-      - run: npm run build
+      - run: npm pack --dry-run
