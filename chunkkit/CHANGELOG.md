@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [1.0.0] — 2026-09-30
 
+> Published as **`@ayush-840/chunkkit`** — the unscoped name `chunkkit` is
+> blocked by npm's typosquatting protection (too similar to `chunk-kit`).
+
 ### Added
 
 - `chunk(text, options)` — structure-aware splitting with `maxSize`, `overlap`,

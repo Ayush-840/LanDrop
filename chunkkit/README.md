@@ -15,13 +15,13 @@ Anyone feeding documents to an LLM has to split text into chunks before embeddin
 ## Installation
 
 ```bash
-npm install chunkkit
+npm install @ayush-840/chunkkit
 ```
 
 ## Quick start
 
 ```js
-import { chunk } from "chunkkit";
+import { chunk } from "@ayush-840/chunkkit";
 
 const chunks = chunk(markdownText, {
   maxSize: 500,
@@ -70,7 +70,7 @@ Input validation is eager: `chunk` throws a `ChunkitError` for `maxSize <= 0`, n
 **1. Plain chunking for embeddings** ([examples/basic.mjs](examples/basic.mjs)):
 
 ```js
-import { chunk } from "chunkkit";
+import { chunk } from "@ayush-840/chunkkit";
 
 const text = `Beam is a peer-to-peer file transfer tool.
 It runs on your local network.
@@ -86,7 +86,7 @@ for (const c of chunk(text, { maxSize: 80, overlap: 20 })) {
 **2. Markdown / RAG preprocessing** ([examples/markdown-rag.mjs](examples/markdown-rag.mjs)):
 
 ```js
-import { chunk } from "chunkkit";
+import { chunk } from "@ayush-840/chunkkit";
 import { readFileSync } from "node:fs";
 
 const doc = readFileSync("handbook.md", "utf8");
@@ -103,7 +103,7 @@ const records = chunks.map((c) => ({
 **3. Token-accurate chunking with a custom counter** ([examples/custom-counter.mjs](examples/custom-counter.mjs)):
 
 ```js
-import { chunk } from "chunkkit";
+import { chunk } from "@ayush-840/chunkkit";
 import { getEncoding } from "tiktoken"; // your dependency, not ours
 
 const enc = getEncoding("cl100k_base");
@@ -114,11 +114,11 @@ const chunks = chunk(longText, {
 });
 ```
 
-**CLI:**
+**CLI:** (`npx @ayush-840/chunkkit <file>` also works without installing)
 
 ```bash
-npx chunkkit notes.md --max-size 500 --overlap 50 --split-on markdown
-npx chunkkit notes.md --json          # machine-readable chunk boundaries
+npx @ayush-840/chunkkit notes.md --max-size 500 --overlap 50 --split-on markdown
+npx @ayush-840/chunkkit notes.md --json          # machine-readable chunk boundaries
 ```
 
 ## How it works

@@ -1,5 +1,5 @@
 {
-  "name": "chunkkit",
+  "name": "@ayush-840/chunkkit",
   "version": "1.0.0",
   "description": "Structure-aware text chunking for RAG and LLM pipelines. Zero dependencies.",
   "type": "module",
