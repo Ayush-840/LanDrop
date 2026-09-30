@@ -10,13 +10,6 @@ const HEADING_RE = /^#{1,6}\s+.+$/;
  */
 export function splitMarkdown(text: string, maxCharsHint = Infinity): Segment[] {
   const lines = text.split("\n");
-  // Char offset of each line start.
-  const offsets: number[] = [];
-  let pos = 0;
-  for (const ln of lines) {
-    offsets.push(pos);
-    pos += ln.length + 1; // +1 for \n
-  }
 
   interface Raw { heading?: string; text: string; start: number }
   const sections: Raw[] = [];
@@ -31,18 +24,19 @@ export function splitMarkdown(text: string, maxCharsHint = Infinity): Segment[] 
     curLines = [];
   };
 
-  for (let i = 0; i < lines.length; i++) {
-    const ln = lines[i] ?? "";
+  let lineStart = 0;
+  for (const ln of lines) {
     if (/^\s*```/.test(ln)) inFence = !inFence;
     if (!inFence && HEADING_RE.test(ln.trim())) {
       flush();
       curHeading = ln.trim();
-      curStart = offsets[i] ?? 0;
+      curStart = lineStart;
       curLines = [ln];
     } else {
-      if (curLines.length === 0) curStart = offsets[i] ?? 0;
+      if (curLines.length === 0) curStart = lineStart;
       curLines.push(ln);
     }
+    lineStart += ln.length + 1; // +1 for \n
   }
   flush();
 

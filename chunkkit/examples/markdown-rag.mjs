@@ -1,19 +1,17 @@
-import { chunk } from "chunkkit";
+import { readFileSync } from "node:fs";
+import { chunk } from "../src/index.js";
 
-// Real RAG use-case: chunk my own study notes (markdown) for embedding.
-const notes = `# RAG Lecture Notes
-Retrieval augmented generation grounds the model in your docs.
+// RAG preprocessing: chunk a markdown doc, keeping section headings with
+// their content so every embedded record knows where it came from.
+const doc = readFileSync(new URL("../README.md", import.meta.url), "utf8");
 
-## Chunking
-Keep headings with sections so each embedding has context.
+const chunks = chunk(doc, { maxSize: 500, overlap: 50, splitOn: "markdown" });
 
-## Retrieval
-Embed each chunk, store in a vector DB, retrieve top-k at query time.
-`;
+const records = chunks.map((c) => ({
+  section: c.heading ?? "(top)",
+  text: c.text,
+  location: [c.start, c.end],
+}));
 
-const chunks = chunk(notes, { maxSize: 150, overlap: 20, splitOn: "markdown" });
-for (const c of chunks) {
-  console.log(`--- #${c.index} ${c.heading ?? ""} [${c.start}-${c.end}] ---`);
-  console.log(c.text, "\n");
-}
-// Next step (your pipeline): embed c.text with your provider and upsert with {index, start, end, heading}.
+console.log(JSON.stringify(records.slice(0, 3), null, 2));
+console.error(`${records.length} chunk(s) ready for embedding`);

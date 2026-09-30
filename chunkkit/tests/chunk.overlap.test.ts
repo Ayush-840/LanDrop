@@ -8,9 +8,9 @@ describe("overlap", () => {
     const out = chunk(text, { maxSize: 30, overlap: 5, unit: "chars" });
     expect(out.length).toBeGreaterThan(1);
     for (let i = 1; i < out.length; i++) {
-      const prev = out[i - 1].text;
+      const prev = out[i - 1]!.text;
       const tail = prev.slice(-5);
-      expect(out[i].text.startsWith(tail)).toBe(true);
+      expect(out[i]!.text.startsWith(tail)).toBe(true);
     }
   });
 

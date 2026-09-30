@@ -22,7 +22,7 @@ describe("markdown", () => {
 
   it("keeps heading with its section", () => {
     const out = chunk("# Title\nBody text here.", { maxSize: 1000, splitOn: "markdown" });
-    expect(out[0].text).toContain("# Title");
+    expect(out[0]!.text).toContain("# Title");
   });
 
   it("falls back to paragraph within oversized section", () => {

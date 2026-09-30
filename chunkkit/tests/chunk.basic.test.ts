@@ -5,8 +5,8 @@ describe("chunk basic", () => {
   it("one-liner works with defaults", () => {
     const out = chunk("hello world");
     expect(out).toHaveLength(1);
-    expect(out[0].text).toBe("hello world");
-    expect(out[0].index).toBe(0);
+    expect(out[0]!.text).toBe("hello world");
+    expect(out[0]!.index).toBe(0);
   });
 
   it("never exceeds maxSize (chars)", () => {

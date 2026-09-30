@@ -11,7 +11,7 @@ describe("edge cases", () => {
   it("single char", () => {
     const out = chunk("x");
     expect(out).toHaveLength(1);
-    expect(out[0].text).toBe("x");
+    expect(out[0]!.text).toBe("x");
   });
   it("shorter than maxSize → one chunk", () => {
     expect(chunk("short", { maxSize: 100 })).toHaveLength(1);
@@ -19,8 +19,8 @@ describe("edge cases", () => {
   it("single word longer than maxSize → oversized", () => {
     const out = chunk("supercalifragilistic", { maxSize: 5, unit: "chars", splitOn: "paragraph" });
     // "supercalifragilistic" is one paragraph segment > maxSize
-    expect(out[0].oversized).toBe(true);
-    expect(out[0].text).toBe("supercalifragilistic");
+    expect(out[0]!.oversized).toBe(true);
+    expect(out[0]!.text).toBe("supercalifragilistic");
   });
   it("sentence mode granularity", () => {
     const out = chunk("Hello world. How are you? I am fine.", { maxSize: 20, splitOn: "sentence" });

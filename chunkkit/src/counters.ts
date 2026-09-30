@@ -33,8 +33,3 @@ export function takeTrailing(text: string, n: number, count: CounterFn, unit: "c
   }
   return text.slice(Math.max(0, text.length - n));
 }
-
-/** Counts units of `s` in the given named unit (used by overlap sizing). */
-export function countUnits(s: string, unit: "chars" | "words"): number {
-  return (unit === "words" ? counters.words : counters.chars)(s);
-}

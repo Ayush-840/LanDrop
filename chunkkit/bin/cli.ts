@@ -1,4 +1,3 @@
-#!/usr/bin/env node
 /** chunkkit CLI: npx chunkkit file.md --max-size 500 */
 import { readFileSync } from "node:fs";
 import { chunk } from "../src/index.js";

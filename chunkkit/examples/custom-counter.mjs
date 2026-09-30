@@ -1,15 +1,24 @@
-import { chunk } from "chunkkit";
+import { chunk } from "../src/index.js";
 
-// Pluggable tokenizer adapter (example: tiktoken — NOT a dependency).
-// npm i tiktoken, then:
-//   import { get_encoding } from "tiktoken";
-//   const enc = get_encoding("cl100k_base");
-//   const counter = (s) => enc.encode(s).length;
-const approxTokenCounter = (s) => Math.ceil(s.length / 4);
+// Token-accurate chunking: pass any tokenizer as the `unit` counter.
+// chunkkit has zero dependencies — tiktoken here is the CALLER's dependency.
+// npm i tiktoken  (then uncomment)
 
-const chunks = chunk("Long transcript ... ".repeat(50), {
-  maxSize: 100, // 100 approx-tokens
-  overlap: 10,
-  unit: approxTokenCounter,
+// import { getEncoding } from "tiktoken";
+// const enc = getEncoding("cl100k_base");
+// const countTokens = (s) => enc.encode(s).length;
+
+// Fallback counter so the example runs without tiktoken installed:
+const countTokens = (s) => Math.ceil(s.length / 4); // ~4 chars per token
+
+const longText = "Retrieval quality depends on chunk boundaries. ".repeat(40);
+
+const chunks = chunk(longText, {
+  maxSize: 64,
+  overlap: 8,
+  unit: countTokens,
 });
-console.log(chunks.length, "chunks");
+
+for (const c of chunks) {
+  console.log(`chunk ${c.index}: ~${countTokens(c.text)} tokens, ${c.text.length} chars`);
+}

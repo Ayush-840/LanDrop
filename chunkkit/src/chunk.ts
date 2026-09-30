@@ -95,7 +95,7 @@ export function chunk(text: string, options: ChunkOptions = {}): Chunk[] {
   const out: Chunk[] = packed.map((p, i) => {
     let prefix = "";
     if (i > 0 && overlap > 0) {
-      const prevRaw = packed[i - 1].text;
+      const prevRaw = packed[i - 1]?.text ?? "";
       prefix = overlapPrefix(prevRaw, overlap, count, unitName === "custom" ? "chars" : unitName);
       // Cap overlap so chunk never exceeds maxSize: trim prefix if needed.
       if (prefix) {
