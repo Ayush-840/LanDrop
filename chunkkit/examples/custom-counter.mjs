@@ -1,4 +1,4 @@
-import { chunk } from "../src/index.js";
+import { chunk } from "@ayush-840/chunkkit";
 
 // Token-accurate chunking: pass any tokenizer as the `unit` counter.
 // chunkkit has zero dependencies — tiktoken here is the CALLER's dependency.

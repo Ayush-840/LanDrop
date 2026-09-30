@@ -1,4 +1,4 @@
-import { chunk } from "../src/index.js";
+import { chunk } from "@ayush-840/chunkkit";
 
 const text = `Beam is a peer-to-peer file transfer tool for your local network.
 It finds peers automatically and asks before sending anything.

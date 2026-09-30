@@ -1,5 +1,5 @@
 import { readFileSync } from "node:fs";
-import { chunk } from "../src/index.js";
+import { chunk } from "@ayush-840/chunkkit";
 
 // RAG preprocessing: chunk a markdown doc, keeping section headings with
 // their content so every embedded record knows where it came from.

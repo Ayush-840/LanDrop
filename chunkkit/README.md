@@ -1,4 +1,9 @@
-# chunkkit
+# @ayush-840/chunkkit
+
+[![CI](https://github.com/ayush-840/chunkkit/actions/workflows/ci.yml/badge.svg)](https://github.com/ayush-840/chunkkit/actions/workflows/ci.yml)
+[![npm version](https://img.shields.io/npm/v/@ayush-840/chunkkit.svg)](https://www.npmjs.com/package/@ayush-840/chunkkit)
+[![install size](https://badgen.net/npm/dt/@ayush-840/chunkkit)](https://www.npmjs.com/package/@ayush-840/chunkkit)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 **Structure-aware text chunking for RAG and LLM pipelines. Zero dependencies.**
 
@@ -9,6 +14,8 @@ Anyone feeding documents to an LLM has to split text into chunks before embeddin
 - **RAG pipelines & chatbots**: chunks that respect structure embed and retrieve better than arbitrary slices.
 - **Context-window packing**: fit transcripts, logs or articles under an API limit without losing sentence boundaries.
 - **Dependency-light**: zero runtime dependencies, dual ESM/CJS build, TypeScript types included — drop it into any Node.js 18+ project.
+
+> The unscoped name `chunkkit` is blocked by npm's typosquatting protection (too similar to an existing package), hence the scoped name.
 
 **Non-goals (v1):** no embedding generation, no vector storage, no LLM calls, no PDF/DOCX parsing (pass extracted text), no token-perfect counting for every tokenizer (plug in your own counter).
 
